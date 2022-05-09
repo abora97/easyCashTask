@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "705292750520",
+    "project_id": "serajapp-6a1d1",
+    "storage_bucket": "serajapp-6a1d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705292750520:android:a07366ee512155fe28ae4d",
+        "android_client_info": {
+          "package_name": "com.abora.easyCashTask"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "705292750520-oh3ve7qqihh50j3cbskarod5vdrcdjtq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA46sqytbTDWEHKPhog-B7QElGhHOSeXd8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "705292750520-oh3ve7qqihh50j3cbskarod5vdrcdjtq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "705292750520-jkqsfsvdihif73l18iu3rrrdl97utvnd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.abora.easyCashTask"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
