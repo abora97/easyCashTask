@@ -18,7 +18,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.abora.perfectobase.data.models.DefaultDataModel
-import com.abora.perfectobase.data.models.LoginDataModel
+
 import com.abora.perfectobase.data.remote.networkHandling.NetworkStatus
 import com.abora.perfectobase.R
 import com.abora.perfectobase.app.Application
@@ -50,7 +50,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
 
     abstract fun viewModelClass(): KClass<V>
 
-    var user: LoginDataModel? = null
+//    var user: LoginDataModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setAppMode()
@@ -73,7 +73,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel> : AppCompatA
         dataBinding = DataBindingUtil.setContentView(this, resourceId())
         dataBinding.lifecycleOwner = this
 
-        user = Gson().fromJson(sharedPreferences.getString("user", ""), LoginDataModel::class.java)
+//        user = Gson().fromJson(sharedPreferences.getString("user", ""), LoginDataModel::class.java)
 
     }
 
