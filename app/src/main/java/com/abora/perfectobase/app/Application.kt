@@ -17,7 +17,7 @@ import org.koin.core.logger.Level
 class Application : Application() {
 
     companion object {
-        var language: String = "ar"
+        var language: String = "en"
     }
 
     val sharedPreferences: SharedPreferences by inject()
@@ -30,7 +30,7 @@ class Application : Application() {
             androidContext(this@Application)
             modules(networkModule, preferencesModule, viewModelModule, classesModule)
         }
-        language = if (sharedPreferences.getString("lang", "ar") == "en") {
+        language = if (sharedPreferences.getString("lang", "en") == "en") {
             "en"
         } else {
             "ar"

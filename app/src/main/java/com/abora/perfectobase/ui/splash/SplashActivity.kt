@@ -28,8 +28,6 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
 
     override fun setUI(savedInstanceState: Bundle?) {
 
-        makeStatusBarTransparent()
-
         slideDown = ObjectAnimator.ofFloat(ivFootBall, "translationY", -200f, 0f)
         slideDown.duration = 2000
         slideDown.start()
