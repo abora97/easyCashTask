@@ -28,25 +28,26 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatCheckBox
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
-import com.abora.perfectobase.ui.splash.SplashActivity
+import com.abora.perfectobase.BuildConfig
 import com.abora.perfectobase.R
 import com.abora.perfectobase.databinding.DialogConfirmBinding
+import com.abora.perfectobase.ui.splash.SplashActivity
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
+import com.squareup.picasso.Target
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import java.io.File
-import com.abora.perfectobase.BuildConfig
-import com.squareup.picasso.Target
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.lang.Exception
+
 
 object MyUtils {
 
@@ -66,9 +67,9 @@ object MyUtils {
 
 
         dialog = AlertDialog.Builder(this)
-                .setView(view.root)
-                .setCancelable(false)
-                .show()
+            .setView(view.root)
+            .setCancelable(false)
+            .show()
 
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
@@ -93,9 +94,9 @@ object MyUtils {
 
 
         dialog = AlertDialog.Builder(requireContext())
-                .setView(view.root)
-                .setCancelable(false)
-                .show()
+            .setView(view.root)
+            .setCancelable(false)
+            .show()
 
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
@@ -125,9 +126,9 @@ object MyUtils {
 
 
         dialog = AlertDialog.Builder(this)
-                .setView(view.root)
-                .setCancelable(false)
-                .show()
+            .setView(view.root)
+            .setCancelable(false)
+            .show()
 
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
@@ -157,9 +158,9 @@ object MyUtils {
 
 
         dialog = AlertDialog.Builder(requireContext())
-                .setView(view.root)
-                .setCancelable(false)
-                .show()
+            .setView(view.root)
+            .setCancelable(false)
+            .show()
 
 
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
@@ -186,9 +187,9 @@ object MyUtils {
 
 
         dialog = AlertDialog.Builder(this)
-                .setView(view.root)
-                .setCancelable(false)
-                .show()
+            .setView(view.root)
+            .setCancelable(false)
+            .show()
 
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
@@ -213,14 +214,15 @@ object MyUtils {
 
 
         dialog = AlertDialog.Builder(requireContext())
-                .setView(view.root)
-                .setCancelable(false)
-                .show()
+            .setView(view.root)
+            .setCancelable(false)
+            .show()
 
 
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
     }
+
     fun Fragment.myToastAction2Button(msg: String, confirm: (AlertDialog) -> Unit) {
 
         var dialog: AlertDialog? = null
@@ -242,14 +244,15 @@ object MyUtils {
 
 
         dialog = AlertDialog.Builder(requireContext())
-                .setView(view.root)
-                .setCancelable(false)
-                .show()
+            .setView(view.root)
+            .setCancelable(false)
+            .show()
 
 
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
     }
+
     fun Activity.myToastAction2Button(msg: String, confirm: (AlertDialog) -> Unit) {
 
         var dialog: AlertDialog? = null
@@ -272,16 +275,22 @@ object MyUtils {
 
 
         dialog = AlertDialog.Builder(this)
-                .setView(view.root)
-                .setCancelable(false)
-                .show()
+            .setView(view.root)
+            .setCancelable(false)
+            .show()
 
 
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
     }
 
-    fun Activity.myToast(title:String,msg: String,btn1:String,btn2:String, confirm: (AlertDialog) -> Unit) {
+    fun Activity.myToast(
+        title: String,
+        msg: String,
+        btn1: String,
+        btn2: String,
+        confirm: (AlertDialog) -> Unit
+    ) {
 
         var dialog: AlertDialog? = null
 
@@ -305,9 +314,9 @@ object MyUtils {
 
 
         dialog = AlertDialog.Builder(this)
-                .setView(view.root)
-                .setCancelable(false)
-                .show()
+            .setView(view.root)
+            .setCancelable(false)
+            .show()
 
 
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
@@ -317,7 +326,7 @@ object MyUtils {
 
     fun hideKeyboard(activity: Activity) {
         val imm: InputMethodManager =
-                activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         //Find the currently focused view, so we can grab the correct window token from it.
         var view = activity.currentFocus
         //If no view currently has focus, create a new one, just so we can grab a window token from it
@@ -333,7 +342,13 @@ object MyUtils {
             Picasso.get().load(url).into(this)
     }
 
-    fun TextView.changePartTextColor(text: String, split: String, color: Int, spanClick: Boolean = false, textClick: () -> Unit = {}) {
+    fun TextView.changePartTextColor(
+        text: String,
+        split: String,
+        color: Int,
+        spanClick: Boolean = false,
+        textClick: () -> Unit = {}
+    ) {
 
         val startIndex = text.indexOf(split)
 
@@ -344,32 +359,32 @@ object MyUtils {
 
         if (spanClick) {
             span.setSpan(
-                    object : ClickableSpan() {
-                        override fun onClick(view: View) {
-                            textClick.invoke()
-                        }
+                object : ClickableSpan() {
+                    override fun onClick(view: View) {
+                        textClick.invoke()
+                    }
 
-                        override fun updateDrawState(ds: TextPaint) {
-                            ds.isUnderlineText = false
-                        }
-                    }, text.indexOf(split), text.length,
-                    Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+                    override fun updateDrawState(ds: TextPaint) {
+                        ds.isUnderlineText = false
+                    }
+                }, text.indexOf(split), text.length,
+                Spannable.SPAN_INCLUSIVE_EXCLUSIVE
             )
             movementMethod = LinkMovementMethod.getInstance();
         }
 
         span.setSpan(
-                ForegroundColorSpan(color), text.indexOf(split), text.length,
-                Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+            ForegroundColorSpan(color), text.indexOf(split), text.length,
+            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
         )
         this.text = span
     }
 
     fun AppCompatCheckBox.changePartTextColorBox(
-            text: String,
-            split: String,
-            color: Int,
-            textClick: (View) -> Unit = {}
+        text: String,
+        split: String,
+        color: Int,
+        textClick: (View) -> Unit = {}
     ) {
 
         val startIndex = text.indexOf(split)
@@ -380,19 +395,19 @@ object MyUtils {
         val span = SpannableString(text)
 
         span.setSpan(
-                object : ClickableSpan() {
-                    override fun onClick(view: View) {
-                        textClick.invoke(view)
-                    }
-                }, text.indexOf(split), text.length,
-                Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+            object : ClickableSpan() {
+                override fun onClick(view: View) {
+                    textClick.invoke(view)
+                }
+            }, text.indexOf(split), text.length,
+            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
         )
         movementMethod = LinkMovementMethod.getInstance();
 
 
         span.setSpan(
-                ForegroundColorSpan(color), text.indexOf(split), text.length,
-                Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+            ForegroundColorSpan(color), text.indexOf(split), text.length,
+            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
         )
         this.text = span
 
@@ -411,20 +426,21 @@ object MyUtils {
         val span = SpannableString(text)
 
         span.setSpan(
-                object : ClickableSpan() {
-                    override fun onClick(view: View) {
-                        click.invoke()
-                    }
+            object : ClickableSpan() {
+                override fun onClick(view: View) {
+                    click.invoke()
+                }
 
-                    override fun updateDrawState(ds: TextPaint) {
-                        ds.isUnderlineText = false
-                    }
-                }, startIndex, startIndex + word.length,
-                Spannable.SPAN_INCLUSIVE_EXCLUSIVE)
+                override fun updateDrawState(ds: TextPaint) {
+                    ds.isUnderlineText = false
+                }
+            }, startIndex, startIndex + word.length,
+            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+        )
 
         span.setSpan(
-                ForegroundColorSpan(color), startIndex, startIndex + word.length,
-                Spannable.SPAN_INCLUSIVE_EXCLUSIVE
+            ForegroundColorSpan(color), startIndex, startIndex + word.length,
+            Spannable.SPAN_INCLUSIVE_EXCLUSIVE
         )
 
 
@@ -523,7 +539,7 @@ object MyUtils {
             val uri = "http://maps.google.com/maps?q=loc:$lat,$lng"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
             context.startActivity(intent)
-            Log.d("openMap","google map not found")
+            Log.d("openMap", "google map not found")
         }
     }
 
@@ -537,21 +553,37 @@ object MyUtils {
         return false
     }
 
-    fun Activity.openActivity(open: Class<*>, data: Intent? = null,mustLogin:Boolean=false,loginCheck:Boolean=false) {
-        openActivityManager(open,data,mustLogin,loginCheck,this)
+    fun Activity.openActivity(
+        open: Class<*>,
+        data: Intent? = null,
+        mustLogin: Boolean = false,
+        loginCheck: Boolean = false
+    ) {
+        openActivityManager(open, data, mustLogin, loginCheck, this)
     }
 
-    fun Fragment.openActivity(open: Class<*>, data: Intent? = null,mustLogin:Boolean=false,loginCheck:Boolean=false) {
-        openActivityManager(open,data,mustLogin,loginCheck,requireActivity())
+    fun Fragment.openActivity(
+        open: Class<*>,
+        data: Intent? = null,
+        mustLogin: Boolean = false,
+        loginCheck: Boolean = false
+    ) {
+        openActivityManager(open, data, mustLogin, loginCheck, requireActivity())
     }
 
-    private fun openActivityManager(open: Class<*>, data: Intent? = null, mustLogin:Boolean=false, loginCheck:Boolean=false, activity: Activity){
+    private fun openActivityManager(
+        open: Class<*>,
+        data: Intent? = null,
+        mustLogin: Boolean = false,
+        loginCheck: Boolean = false,
+        activity: Activity
+    ) {
 
-        if (mustLogin && !loginCheck){
-            activity.myToastAction2Button(activity.resources.getString(R.string.please_login_first)){
+        if (mustLogin && !loginCheck) {
+            activity.myToastAction2Button(activity.resources.getString(R.string.please_login_first)) {
                 activity.openActivity(SplashActivity::class.java)
             }
-        }else{
+        } else {
             var intent = Intent(activity, open)
             if (data != null) {
                 intent.putExtras(data)
@@ -560,6 +592,7 @@ object MyUtils {
             activity.overridePendingTransition(R.anim.slide_up, R.anim.no_change)
         }
     }
+
     fun setRecyclerAnimation(mRecycler: RecyclerView) {
         mRecycler.layoutAnimation =
             AnimationUtils.loadLayoutAnimation(mRecycler.context, R.anim.item_recycler_anim)
@@ -577,15 +610,15 @@ object MyUtils {
         }
     }
 
-    fun Activity.copyText(text:String){
+    fun Activity.copyText(text: String) {
         copyTextOp(text, this)
     }
 
-    fun Fragment.copyText(text:String){
+    fun Fragment.copyText(text: String) {
         copyTextOp(text, requireContext())
     }
 
-    fun copyTextOp(text:String,context: Context){
+    fun copyTextOp(text: String, context: Context) {
         val clipboard: ClipboardManager? =
             context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
         val clip = ClipData.newPlainText("", text)
@@ -593,46 +626,54 @@ object MyUtils {
         Toast.makeText(context, context.getString(R.string.textCopy), Toast.LENGTH_SHORT).show()
     }
 
-    fun Activity.shareApp(){
+    fun Activity.shareApp() {
         shareAppOperator(this)
     }
 
-    fun Fragment.shareApp(){
+    fun Fragment.shareApp() {
         shareAppOperator(requireActivity())
     }
 
     private fun shareAppOperator(activity: Activity) {
         try {
-            val shareIntent=Intent(Intent.ACTION_SEND)
-            shareIntent.type="text/plain"
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT,activity.resources.getString(R.string.app_name))
-            val shareMsg=""
-            val appLink="https://play.google.com/store/apps/details?id="+ BuildConfig.APPLICATION_ID
-            shareIntent.putExtra(Intent.EXTRA_TEXT,"\n\n"+shareMsg+"\n\n"+appLink)
-            activity.startActivity(Intent.createChooser(shareIntent,"choose one"))
-        }catch (e: Exception){
-            Toast.makeText(activity,e.toString(), Toast.LENGTH_LONG).show()
+            val shareIntent = Intent(Intent.ACTION_SEND)
+            shareIntent.type = "text/plain"
+            shareIntent.putExtra(
+                Intent.EXTRA_SUBJECT,
+                activity.resources.getString(R.string.app_name)
+            )
+            val shareMsg = ""
+            val appLink =
+                "https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID
+            shareIntent.putExtra(Intent.EXTRA_TEXT, "\n\n" + shareMsg + "\n\n" + appLink)
+            activity.startActivity(Intent.createChooser(shareIntent, "choose one"))
+        } catch (e: Exception) {
+            Toast.makeText(activity, e.toString(), Toast.LENGTH_LONG).show()
         }
     }
 
-    fun Activity.shareContent(shareData:String,shareImg:String){
-        if (shareImg.isNullOrEmpty()){
-            shareContentOperator(this,shareData)
-        }else{
-            shareContentWithImgOperator(this,shareData,shareImg)
+    fun Activity.shareContent(shareData: String, shareImg: String) {
+        if (shareImg.isNullOrEmpty()) {
+            shareContentOperator(this, shareData)
+        } else {
+            shareContentWithImgOperator(this, shareData, shareImg)
         }
     }
 
-    fun Fragment.shareContent(shareData:String,shareImg:String){
-        if (shareImg.isNullOrEmpty()){
-            shareContentOperator(requireActivity(),shareData)
-        }else{
-            shareContentWithImgOperator(requireActivity(),shareData,shareImg)
+    fun Fragment.shareContent(shareData: String, shareImg: String) {
+        if (shareImg.isNullOrEmpty()) {
+            shareContentOperator(requireActivity(), shareData)
+        } else {
+            shareContentWithImgOperator(requireActivity(), shareData, shareImg)
         }
 
     }
 
-    private fun shareContentWithImgOperator(activity: Activity,shareData:String,shareImg:String) {
+    private fun shareContentWithImgOperator(
+        activity: Activity,
+        shareData: String,
+        shareImg: String
+    ) {
         Picasso.get().load(shareImg).into(object : Target {
             override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
 
@@ -642,13 +683,16 @@ object MyUtils {
                     Intent.EXTRA_TEXT,
                     shareData
                 )
-                sendIntent.putExtra(Intent.EXTRA_STREAM, getLocalBitmapUri(bitmap,activity,shareData))
+                sendIntent.putExtra(
+                    Intent.EXTRA_STREAM,
+                    getLocalBitmapUri(bitmap, activity, shareData)
+                )
                 sendIntent.type = "image/*"
                 activity.startActivity(sendIntent)
             }
 
             override fun onBitmapFailed(e: Exception?, errorDrawable: Drawable?) {
-                shareContentOperator(activity,shareData)
+                shareContentOperator(activity, shareData)
             }
 
             override fun onPrepareLoad(placeHolderDrawable: Drawable?) {}
@@ -656,7 +700,7 @@ object MyUtils {
 
     }
 
-    private fun shareContentOperator(activity: Activity,shareData:String) {
+    private fun shareContentOperator(activity: Activity, shareData: String) {
         val sendIntent = Intent()
         sendIntent.action = Intent.ACTION_SEND
         sendIntent.putExtra(
@@ -667,7 +711,7 @@ object MyUtils {
         activity.startActivity(sendIntent)
     }
 
-    private fun getLocalBitmapUri(bmp: Bitmap?, activity: Activity,shareData:String): Uri? {
+    private fun getLocalBitmapUri(bmp: Bitmap?, activity: Activity, shareData: String): Uri? {
         var bmpUri: Uri? = null
         try {
             val file = File(
@@ -680,24 +724,24 @@ object MyUtils {
             bmpUri = Uri.fromFile(file)
         } catch (e: IOException) {
             e.printStackTrace()
-            shareContentOperator(activity,shareData)
+            shareContentOperator(activity, shareData)
         }
         return bmpUri
     }
 
 
     fun Activity.openBrowser(target: String) {
-        openBrowserEngine(target,this)
+        openBrowserEngine(target, this)
     }
 
     fun Fragment.openBrowser(target: String) {
-        openBrowserEngine(target,this.activity)
+        openBrowserEngine(target, this.activity)
     }
 
-    private fun openBrowserEngine(targetUrl: String, activity: Activity?){
-        var url=targetUrl
-        if (!targetUrl.startsWith("http://") && !targetUrl.startsWith("https://")){
-            url= "http://$targetUrl"
+    private fun openBrowserEngine(targetUrl: String, activity: Activity?) {
+        var url = targetUrl
+        if (!targetUrl.startsWith("http://") && !targetUrl.startsWith("https://")) {
+            url = "http://$targetUrl"
         }
 
         val browserIntent =
@@ -756,6 +800,24 @@ object MyUtils {
         val intent = Intent(Intent.ACTION_DIAL)
         intent.data = Uri.parse("tel:${phoneNum}")
         activity?.startActivity(intent)
+    }
+
+    fun Activity.sendEmail(email: String) {
+        if (email != null)
+            sendEmailEngine(email, this)
+    }
+
+    fun Fragment.sendEmail(email: String) {
+        if (email != null)
+            sendEmailEngine(email, requireActivity())
+    }
+
+    private fun sendEmailEngine(email: String, activity: Activity?) {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.data = Uri.parse("mailto:")
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
+        activity?.startActivity(Intent.createChooser(intent, "Choose Email Client..."))
     }
 
     fun Activity.openWhatsWithNum(phoneNum: String) {

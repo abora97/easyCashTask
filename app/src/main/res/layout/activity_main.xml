@@ -13,10 +13,24 @@
             layout="@layout/toolbar_with_text"
             app:toolText="@{@string/competitions}" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCurrentCompetition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:backgroundTint="#8A1538"
+            android:drawableEnd="@drawable/ic_qatar_logo_generator"
+            android:drawablePadding="@dimen/_8sdp"
+            android:text="Competition 2022"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recCompetitions"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_8sdp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="4"
             tools:listitem="@layout/item_competition" />

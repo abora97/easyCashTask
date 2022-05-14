@@ -15,6 +15,9 @@
         android:theme="@style/Theme.PerfectoBase"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.teamsDetails.TeamsDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.competitionDetails.CompetitionDetails"
             android:exported="false" />
         <activity

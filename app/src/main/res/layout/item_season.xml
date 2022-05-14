@@ -78,6 +78,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvStartDate" />
 
             <TextView
+                android:id="@+id/tvName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8sdp"
@@ -87,8 +88,22 @@
                 android:textStyle="bold"
                 android:visibility="@{data.winner == null ? View.GONE:View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="@+id/ivFlag"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvNameShort"
                 app:layout_constraintStart_toEndOf="@+id/ivFlag"
+                app:layout_constraintTop_toTopOf="@+id/ivFlag"
+                tools:text="Italy" />
+
+            <TextView
+                android:id="@+id/tvNameShort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:text="@{data.winner.shortName}"
+                android:textColor="@color/black"
+                android:visibility="@{data.winner == null ? View.GONE:View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@+id/ivFlag"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/ivFlag"
                 tools:text="Italy" />
 

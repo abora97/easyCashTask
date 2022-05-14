@@ -41,6 +41,7 @@
             android:layout_marginEnd="@dimen/_8sdp"
             android:textColor="@color/black"
             android:textStyle="bold"
+            android:text="@{data.name}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivCompetition"
@@ -113,12 +114,27 @@
             tools:text="MatchDay : 201" />
 
         <TextView
+            android:id="@+id/tvShowTeam"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="Show Teams"
+            android:textColor="@color/blue"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            app:setUnderLine="@{true}"
+            app:layout_constraintEnd_toEndOf="@+id/tvEndDate"
+            app:layout_constraintStart_toStartOf="@+id/tvStartDate"
+            app:layout_constraintTop_toBottomOf="@+id/tvMatchDay"
+             />
+
+        <TextView
             android:id="@+id/tvSeason"
             android:layout_width="0dp"
             android:text="Seasons :"
             android:layout_marginTop="@dimen/_8sdp"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/tvMatchDay"
+            app:layout_constraintTop_toBottomOf="@+id/tvShowTeam"
             app:layout_constraintStart_toStartOf="@+id/tvMatchDay"
             app:layout_constraintEnd_toEndOf="@+id/tvMatchDay"
             android:layout_height="wrap_content"/>

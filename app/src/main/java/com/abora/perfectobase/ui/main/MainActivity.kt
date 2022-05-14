@@ -16,7 +16,7 @@ import kotlin.reflect.KClass
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     CompetitionsAdapter.MyCompetitionsAction {
 
-    lateinit var competitionsAdapter: CompetitionsAdapter
+    private lateinit var competitionsAdapter: CompetitionsAdapter
 
     override fun resourceId(): Int = R.layout.activity_main
 
@@ -35,7 +35,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     }
 
     override fun clicks() {
-
+        btnCurrentCompetition.setOnClickListener {
+            openActivity(CompetitionDetails::class.java)
+        }
     }
 
     override fun callApis() {
@@ -45,4 +47,5 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     override fun onCompetitionsClick(data: CompetitionsData, type: String, position: Int) {
         openActivity(CompetitionDetails::class.java, Intent().putExtra("data", Gson().toJson(data)))
     }
+
 }

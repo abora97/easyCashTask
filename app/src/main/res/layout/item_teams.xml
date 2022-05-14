@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.abora.perfectobase.data.models.Teams" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:cardElevation="@dimen/_4sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivFlag"
+                loadSvgImg="@{data.crestUrl}"
+                android:layout_width="@dimen/_34sdp"
+                android:layout_height="@dimen/_34sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:text="@{data.name}"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/ivFlag"
+                app:layout_constraintEnd_toStartOf="@+id/tvNameShort"
+                app:layout_constraintStart_toEndOf="@+id/ivFlag"
+                app:layout_constraintTop_toTopOf="@+id/ivFlag"
+                tools:text="Italy" />
+
+            <TextView
+                android:id="@+id/tvNameShort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:text="@{data.shortName}"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/ivFlag"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivFlag"
+                tools:text="Italy" />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:text="@{`Address : `+data.address}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivFlag"
+                tools:text="Address : Guayaybo 1531 Montevideo 11200" />
+
+            <TextView
+                android:id="@+id/tvPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:drawableStart="@drawable/ic_baseline_local_phone_24"
+                android:drawablePadding="@dimen/_8sdp"
+                android:gravity="center|start"
+                android:text="@{data.phone}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAddress"
+                tools:text="+59 (82) 4004814" />
+
+            <TextView
+                android:id="@+id/tvWebsite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:drawableStart="@drawable/ic_globe"
+                android:drawablePadding="@dimen/_8sdp"
+                android:gravity="center|start"
+                android:text="@{data.website}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPhone"
+                tools:text="+59 (82) 4004814" />
+
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:drawableStart="@drawable/ic_email"
+                android:drawablePadding="@dimen/_8sdp"
+                android:gravity="center|start"
+                android:text="@{data.email}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvWebsite"
+                tools:text="auf@auf.org.uy" />
+
+            <TextView
+                android:id="@+id/tvClubColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:drawablePadding="@dimen/_8sdp"
+                android:gravity="center|start"
+                android:text="@{`ClubColors :` + data.clubColors}"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvEmail"
+                tools:text="ClubColors : Sky Blue / White / Black" />
+
+            <TextView
+                android:id="@+id/tvVenue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:drawablePadding="@dimen/_8sdp"
+                android:gravity="center|start"
+                android:text="@{`Venue :` + data.venue}"
+                android:textColor="@color/black"
+                setMarquee="@{true}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvArea"
+                app:layout_constraintTop_toBottomOf="@+id/tvClubColor"
+                tools:text="venue : Sky Blue / White / Black" />
+
+            <TextView
+                android:id="@+id/tvArea"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:drawablePadding="@dimen/_8sdp"
+                android:gravity="center|start"
+                android:text="@{`Area :` + data.area.name}"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvVenue"
+                app:layout_constraintTop_toBottomOf="@+id/tvClubColor"
+                tools:text="Area : Uruguay" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

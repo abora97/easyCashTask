@@ -9,6 +9,8 @@ import com.abora.perfectobase.data.models.CompetitionsData
 import com.abora.perfectobase.data.models.Seasons
 import com.abora.perfectobase.databinding.ActivityCompetitionDetailsBinding
 import com.abora.perfectobase.ui.main.MainViewModel
+import com.abora.perfectobase.ui.teamsDetails.TeamsDetailsActivity
+import com.abora.perfectobase.utils.MyUtils.openActivity
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_competition_details.*
 import kotlinx.android.synthetic.main.toolbar_with_text.*
@@ -17,7 +19,7 @@ import kotlin.reflect.KClass
 class CompetitionDetails : BaseActivity<ActivityCompetitionDetailsBinding, MainViewModel>(),
     SeasonsAdapter.MySeasonAction {
 
-    lateinit var seasonsAdapter:SeasonsAdapter
+    private lateinit var seasonsAdapter:SeasonsAdapter
 
     lateinit var competitionsData: CompetitionsData
 
@@ -33,6 +35,8 @@ class CompetitionDetails : BaseActivity<ActivityCompetitionDetailsBinding, MainV
                         Gson().fromJson(it.getString("data", ""), CompetitionsData::class.java)
                     dataBinding.toolTitle = competitionsData.name
                 }
+            }else{
+                dataBinding.toolTitle="FIFA World Cup"
             }
         }
 
@@ -51,6 +55,10 @@ class CompetitionDetails : BaseActivity<ActivityCompetitionDetailsBinding, MainV
         btnToolBack.visibility = View.VISIBLE
         btnToolBack.setOnClickListener {
             onBackPressed()
+        }
+
+        tvShowTeam.setOnClickListener {
+            openActivity(TeamsDetailsActivity::class.java)
         }
     }
 
