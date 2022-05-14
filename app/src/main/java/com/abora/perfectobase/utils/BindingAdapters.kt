@@ -25,6 +25,8 @@ import android.graphics.BitmapFactory
 import com.abora.perfectobase.R
 
 import com.bumptech.glide.Glide
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYouListener
 import java.io.File
 
 
@@ -226,6 +228,37 @@ object BindingAdapters {
         if (imgFile.exists()) {
             val myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath())
             imageView.setImageBitmap(myBitmap)
+        }
+    }
+
+
+    @JvmStatic
+    @BindingAdapter(value = ["loadSvgImg", "placeholder"], requireAll = false)
+    fun loadSvgImg(imageView: ImageView, url: String?, placeHolder: Drawable?) {
+        if (!TextUtils.isEmpty(url)) {
+            var placeHolderId = placeHolder
+
+            if (placeHolderId == null) {
+                placeHolderId =
+                    imageView.context.resources.getDrawable(R.drawable.ic_placeholder_square)
+            }
+
+            GlideToVectorYou
+                .init()
+                .with(imageView.context)
+                .withListener(object: GlideToVectorYouListener {
+                    override fun onLoadFailed() {
+
+                    }
+
+                    override fun onResourceReady() {
+
+                    }
+
+                })
+                .setPlaceHolder(R.drawable.ic_placeholder_square, R.drawable.ic_placeholder_square)
+                .load(Uri.parse(url) ,imageView)
+
         }
     }
 

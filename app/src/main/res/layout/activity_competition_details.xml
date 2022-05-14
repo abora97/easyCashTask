@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="toolTitle"
+            type="String" />
+
+        <variable
+            name="data"
+            type="com.abora.perfectobase.data.models.CompetitionsDetailsDataModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.competitionDetails.CompetitionDetails">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar_with_text"
+            app:toolText="@{toolTitle}" />
+
+        <ImageView
+            android:id="@+id/ivCompetition"
+            loadImg="@{data.emblemUrl}"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_120sdp"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivCompetition"
+            tools:text="FIFA World Cup" />
+
+        <TextView
+            android:id="@+id/tvNameCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:text="@{`Competition code : ` + data.code}"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/tvArea"
+            app:layout_constraintStart_toStartOf="@+id/tvName"
+            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            tools:text="competition code : Africa" />
+
+        <TextView
+            android:id="@+id/tvArea"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:text="@{`Area : ` + data.area.name}"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/tvName"
+            app:layout_constraintStart_toEndOf="@+id/tvNameCode"
+            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            tools:text="Area : Africa" />
+
+        <TextView
+            android:id="@+id/tvStartDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:text="@{`Start : ` + data.currentSeason.startDate}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/tvEndDate"
+            app:layout_constraintEnd_toStartOf="@+id/tvEndDate"
+            app:layout_constraintStart_toStartOf="@+id/tvName"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameCode"
+            tools:text="Start : 2019-09-04" />
+
+        <TextView
+            android:id="@+id/tvEndDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:text="@{`End : ` + data.currentSeason.endDate}"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tvStartDate"
+            app:layout_constraintTop_toBottomOf="@+id/tvNameCode"
+            tools:text="End : 2019-09-04" />
+
+        <TextView
+            android:id="@+id/tvMatchDay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="@{`MatchDay : ` + data.currentSeason.currentMatchday}"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@+id/tvEndDate"
+            app:layout_constraintStart_toStartOf="@+id/tvStartDate"
+            app:layout_constraintTop_toBottomOf="@+id/tvStartDate"
+            tools:text="MatchDay : 201" />
+
+        <TextView
+            android:id="@+id/tvSeason"
+            android:layout_width="0dp"
+            android:text="Seasons :"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@+id/tvMatchDay"
+            app:layout_constraintStart_toStartOf="@+id/tvMatchDay"
+            app:layout_constraintEnd_toEndOf="@+id/tvMatchDay"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/recSeason"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_season"
+            app:layout_constraintTop_toBottomOf="@+id/tvSeason"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="0dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

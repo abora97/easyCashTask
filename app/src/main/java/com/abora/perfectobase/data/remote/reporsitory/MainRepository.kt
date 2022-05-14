@@ -12,4 +12,13 @@ class MainRepository constructor(var apiService: RetrofitApi) : NetworkResult() 
     }, networkStatus)
 
 
+    suspend fun getCompetitionsDetails(networkStatus: NetworkStatus,id:String) = getResult({
+        apiService.getCompetitionsDetails(id=id).await()
+    }, networkStatus)
+
+    suspend fun getTeamDetails(networkStatus: NetworkStatus,id:String) = getResult({
+        apiService.getTeamDetails(id=id).await()
+    }, networkStatus)
+
+
 }

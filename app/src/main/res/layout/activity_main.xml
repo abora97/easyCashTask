@@ -9,6 +9,10 @@
         android:orientation="vertical"
         tools:context=".ui.main.MainActivity">
 
+        <include
+            layout="@layout/toolbar_with_text"
+            app:toolText="@{@string/competitions}" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recCompetitions"
             android:layout_width="match_parent"

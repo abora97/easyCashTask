@@ -24,6 +24,8 @@ import java.util.concurrent.TimeUnit
 
 
 const val BASE_URL="http://api.football-data.org/v2/"
+const val apiAuthToken="2087e037d5d1424e9a298becd55924e2"
+
 
 val networkModule = module {
     single { getLoggingInterceptor() }
@@ -54,6 +56,7 @@ fun getOkHttp(
                 val request = chain.request()
                 val builder = request.newBuilder()
                         .addHeader("Accept-Language", Application.language)
+                        .addHeader("X-Auth-Token", apiAuthToken)
                         .addHeader("Accept", "application/json")
                         .addHeader("Content-Type", "application/json")
                         .addHeader("Device-Type", "android")

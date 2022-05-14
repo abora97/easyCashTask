@@ -1,17 +1,19 @@
-package com.abora.perfectobase.ui.main
+package com.abora.perfectobase.ui.competitionDetails
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.abora.perfectobase.data.models.CompetitionsData
+import com.abora.perfectobase.data.models.Seasons
 import com.abora.perfectobase.databinding.ItemCompetitionBinding
+import com.abora.perfectobase.databinding.ItemSeasonBinding
 
-class CompetitionsAdapter(
-    val actions: MyCompetitionsAction
-) : RecyclerView.Adapter<CompetitionsAdapter.MyHolder>() {
+class SeasonsAdapter(
+    val actions: MySeasonAction
+) : RecyclerView.Adapter<SeasonsAdapter.MyHolder>() {
 
-    var list: MutableList<CompetitionsData> = arrayListOf()
+    var list: MutableList<Seasons> = arrayListOf()
     var lastPosition = -1
     lateinit var context: Context
 
@@ -20,7 +22,7 @@ class CompetitionsAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyHolder {
         context = parent.context
         return MyHolder(
-            ItemCompetitionBinding.inflate(
+            ItemSeasonBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -37,21 +39,21 @@ class CompetitionsAdapter(
 
     }
 
-    fun updateData(newList: MutableList<CompetitionsData>, pos: Int) {
+    fun updateData(newList: MutableList<Seasons>, pos: Int) {
         list = newList
         notifyItemChanged(pos)
     }
 
-    fun setData(list: MutableList<CompetitionsData>) {
+    fun setData(list: MutableList<Seasons>) {
         this.list = list
         notifyDataSetChanged()
     }
 
-    inner class MyHolder(val viewItem: ItemCompetitionBinding) : RecyclerView.ViewHolder(viewItem.root) {
+    inner class MyHolder(val viewItem: ItemSeasonBinding) : RecyclerView.ViewHolder(viewItem.root) {
 
         init {
             viewItem.root.setOnClickListener {
-                actions.onCompetitionsClick(data = list[adapterPosition], type = "root", position = adapterPosition)
+                actions.onSeasonClick(data = list[adapterPosition], type = "root", position = adapterPosition)
             }
 
 
@@ -59,7 +61,7 @@ class CompetitionsAdapter(
     }
 
 
-    interface MyCompetitionsAction {
-        fun onCompetitionsClick(data: CompetitionsData, type: String, position: Int)
+    interface MySeasonAction {
+        fun onSeasonClick(data: Seasons, type: String, position: Int)
     }
 }

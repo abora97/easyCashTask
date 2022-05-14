@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.abora.perfectobase.data.models.Seasons" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_4sdp"
+        app:cardCornerRadius="@dimen/_8sdp"
+        app:cardElevation="@dimen/_4sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_8sdp">
+
+            <TextView
+                android:id="@+id/tvMatchDay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:text="@{`MatchDay : ` + data.currentMatchday}"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="MatchDay : 201" />
+
+            <TextView
+                android:id="@+id/tvStartDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:text="@{`Start : ` + data.startDate}"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/tvEndDate"
+                app:layout_constraintEnd_toStartOf="@+id/tvEndDate"
+                app:layout_constraintStart_toStartOf="@+id/tvMatchDay"
+                app:layout_constraintTop_toBottomOf="@+id/tvMatchDay"
+                tools:text="Start : 2019-09-04" />
+
+            <TextView
+                android:id="@+id/tvEndDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:text="@{`End : ` + data.endDate}"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvStartDate"
+                app:layout_constraintTop_toBottomOf="@+id/tvMatchDay"
+                tools:text="End : 2019-09-04" />
+
+            <ImageView
+                android:id="@+id/ivFlag"
+                loadSvgImg="@{data.winner.crestUrl}"
+                android:layout_width="@dimen/_34sdp"
+                android:layout_height="@dimen/_34sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:visibility="@{data.winner == null ? View.GONE:View.VISIBLE}"
+                app:layout_constraintStart_toStartOf="@+id/tvStartDate"
+                app:layout_constraintTop_toBottomOf="@+id/tvStartDate" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:text="@{data.winner.name}"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:visibility="@{data.winner == null ? View.GONE:View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@+id/ivFlag"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivFlag"
+                app:layout_constraintTop_toTopOf="@+id/ivFlag"
+                tools:text="Italy" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

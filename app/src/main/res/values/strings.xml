@@ -4,5 +4,6 @@
     <string name="ok">ok</string>
     <string name="cancel">cancel</string>
     <string name="textCopy">text Copy</string>
+    <string name="competitions">Competitions</string>
     <string name="please_login_first">يجب تسجيل الدخول اولا</string>
 </resources>
