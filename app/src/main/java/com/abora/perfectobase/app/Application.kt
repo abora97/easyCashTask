@@ -3,6 +3,7 @@ package com.abora.perfectobase.app
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.abora.perfectobase.app.Application.Companion.context
 import com.abora.perfectobase.di.module.classesModule
 import com.abora.perfectobase.di.module.networkModule
 import com.abora.perfectobase.di.module.preferencesModule
@@ -18,12 +19,15 @@ class Application : Application() {
 
     companion object {
         var language: String = "en"
+        private var context: Context? = null
     }
 
     val sharedPreferences: SharedPreferences by inject()
 
     override fun onCreate() {
         super.onCreate()
+
+        context = applicationContext
 
         startKoin {
             androidLogger(Level.NONE)
@@ -43,6 +47,12 @@ class Application : Application() {
         super.attachBaseContext(base)
 
     }
+
+    fun getAppContext(): Context? {
+        return context
+    }
+
+
 
 
 }
